@@ -5,6 +5,10 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     genre: {
         type: String,
         required: true,
@@ -15,6 +19,10 @@ const bookSchema = new mongoose.Schema({
     },
     tags:{
         type:[String],
+    },
+    price: {
+        type: Number,
+        required: true
     },
     image: {
         type: String,

@@ -2,14 +2,17 @@ import {book} from '../models/book.model.js';
 import {uploadToCloudinary} from '../services/cloudinary.service.js';
 export const addBook = async (req,res) => {
 	try{
-    	const{title,genre,author,tags}=req.body;
+    	const{title,description,genre,author,tags,price}=req.body;
+    	let tagsArray=tags.split(',');
     	let localFilePath = req.file?.path;
     	let upload = await uploadToCloudinary(localFilePath);
         let response = await book.create({
             title,
+            description,
             genre,
             author,
-            tags,
+            tags:tagsArray,
+            price,
             image:upload.url
         })
     	res.status(200).json({
@@ -28,18 +31,25 @@ export const addBook = async (req,res) => {
 export const updateBook = async(req, res) => {
     try {
 
-    } catch (error) {
+    } 
+    catch (error) {
         res.status(500).json({
             message: "server error"
         })
     }
 }
  
-export const bookDetails = async (req,res) => {
+export const allBooks = async (req,res) => {
 	try{
-
+		let books= await book.find();
+		res.status(200).json({
+    		message:'books found',
+    		books:books
+    	})
 	}
-	catch(error){
-
-	}
+	catch (error) {
+        res.status(500).json({
+            message: "server error"
+        })
+    }
 }
