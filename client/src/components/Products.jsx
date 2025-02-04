@@ -37,7 +37,7 @@ function Cards({prop}){
 }
 
 function Products() {
-  const [data,setData]=useState({});
+  const [data,setData]=useState([]);
   useEffect(()=>{
     try{
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/book/allbooks`)
@@ -53,7 +53,7 @@ function Products() {
     <>
 	<div className="container mx-auto p-5 gap-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 		{
-			data.map((item,i)=><Cards key={i} prop={item}/>)
+			data?.map((item,i)=><Cards key={i} prop={item}/>)
 		}
 	</div>
   <div className="p-2 flex justify-center">
