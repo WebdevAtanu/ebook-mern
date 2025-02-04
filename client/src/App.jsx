@@ -3,6 +3,7 @@ import './App.css'
 import Home from './components/Home'
 import Contact from './components/Contact'
 import Blog from './components/Blog'
+import Description from './components/Description'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Dashboard from './components/admin/Dashboard'
@@ -43,6 +44,14 @@ function AnimatedRoutes() {
           element={
             <motion.div initial="initial" animate="animate" exit="exit" variants={pageVariants}>
               <Blog />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/description/:id"
+          element={
+            <motion.div initial="initial" animate="animate" exit="exit" variants={pageVariants}>
+              <Description />
             </motion.div>
           }
         />

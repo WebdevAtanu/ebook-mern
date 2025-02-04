@@ -53,3 +53,19 @@ export const allBooks = async (req,res) => {
         })
     }
 }
+
+export const getBook = async (req,res) => {
+    try{
+        let id=req.params.id;
+        let theBook= await book.find({_id:id});
+        res.status(200).json({
+            message:'book found',
+            book:theBook
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "server error"
+        })
+    }
+}
