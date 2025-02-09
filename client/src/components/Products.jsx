@@ -19,15 +19,12 @@ function Cards({prop}){
         image={prop.image}
         title="green iguana"
       />
-      <CardContent>
+      <CardContent className='text-sm'>
         <Typography gutterBottom variant="h5" component="div">{prop.title}</Typography>
         <Typography gutterBottom variant="p" component="div">Author- {prop.author}</Typography>
         <Typography gutterBottom variant="p" component="div">{prop.description.slice(0,100)}...</Typography>
         <Typography gutterBottom variant="p" component="div">Genre- {prop.genre}</Typography>
-        <Typography gutterBottom variant="p" component="div">Tags- {prop.tags.map((item,i)=><span key={i} className='bg-green-500 text-white mx-1 px-1 rounded'>{item} </span>)}</Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {}
-        </Typography>
+        <Typography gutterBottom variant="p" component="div">Tags- {prop.tags.map((item,i)=><span key={i} className='bg-gray-100 text-xs mx-1 p-1 rounded'>{item} </span>)}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" variant="outlined" color="success" className='w-full'><Link to={`/description/${prop._id}`} state={prop}>description</Link></Button>

@@ -39,19 +39,22 @@ function Navigation() {
 
 	return (
 		<>
-		<div className="bg-green-700 text-white flex flex-wrap p-2 flex-col md:flex-row items-center">
+		<div className="bg-green-700 text-white flex flex-wrap p-2 justify-between">
+			<div className="md:hidden">
+				logoimg
+			</div>
 			<nav className="md:mx-auto text-sm flex gap-5 flex-wrap items-center text-base justify-center">
-				<NavLink to='/' className="">HOME</NavLink>
-				<NavLink to='/contact' className="">CONTACT</NavLink>
-				<NavLink to='/blog' className="">BLOG</NavLink>
-				<NavLink to='/admin' className="">ADMIN</NavLink>
+				<NavLink to='/' className="underline-offset-4" style={({isActive})=>({color:isActive?'skyblue':'white',textDecoration:isActive?'underline':'none'})}>HOME</NavLink>
+				<NavLink to='/contact' className="underline-offset-4" style={({isActive})=>({color:isActive?'skyblue':'white',textDecoration:isActive?'underline':'none'})}>CONTACT</NavLink>
+				<NavLink to='/blog' className="underline-offset-4" style={({isActive})=>({color:isActive?'skyblue':'white',textDecoration:isActive?'underline':'none'})}>BLOG</NavLink>
+				<NavLink to='/admin' className="underline-offset-4" style={({isActive})=>({color:isActive?'skyblue':'white',textDecoration:isActive?'underline':'none'})}>ADMIN</NavLink>
 			</nav>
 		</div> 
 		{
 		location.pathname=='/admin'?null:
 		<>
 		<div className="bg-white z-20 flex gap-5 px-5 py-3 flex-row items-center justify-between sticky top-0 shadow">
-			<div className="order-1">
+			<div className="order-1 hidden md:block">
 			logoimg
 			</div>
 
@@ -75,7 +78,7 @@ function Navigation() {
 				/>
 				:null
 			}
-			<div className="order-3 flex gap-2 items-center">
+			<div className="order-1 md:order-3 flex gap-2 items-center">
 			<div className="gap-5 p-3 text-xl hidden md:flex">
 				<Tooltip title="Favorites" arrow>
 				<span className='cursor-pointer hover:text-blue-500 transition'><FaHeart /></span>
@@ -87,7 +90,9 @@ function Navigation() {
 				<span className='cursor-pointer hover:text-blue-500 transition' onClick={toggleDrawer(true)}><FaShoppingCart /></span>
 				</Tooltip>
 			</div>
-			<span className='cursor-pointer hover:text-blue-500 transition'><Auth/></span>
+			<div className="cursor-pointer hover:text-blue-500 transition w-full">
+				<Auth/>
+			</div>
 			</div>
 		</div>
 

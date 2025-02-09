@@ -1,22 +1,46 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Datatable from './Datatable';
 import Addbook from './Addbook';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { TiThMenu } from "react-icons/ti";
+import {useNavigate} from 'react-router-dom';
 
 function Dashboard() {
     const [option, setOption] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
+    const [key,setKey] = useState("atanu1998");
+    const navigate=useNavigate();
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = (e) => {
         setOption(e.target.innerText);
         setAnchorEl(null);
     };
+
+    const signin=()=>{
+        let pass=prompt('Enter admin passkey');
+        if(pass==key){
+            return true
+        }
+        else{
+            navigate('/');
+            return;
+        }
+        
+    }
+
+    useEffect(()=>{
+    	signin();
+    },[])
+
+
+
 	return (
 		<div>
 		<div className='flex justify-end p-2'>

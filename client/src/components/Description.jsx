@@ -30,7 +30,7 @@ function Description() {
 				<p>author- {data?.author}</p>
 				<p>{data?.description}</p>
 				<p>genre- {data?.genre}</p>
-				<p>tags- {data?.tags?.map((item,i)=><span key={i} className='bg-green-500 text-white mx-1 px-1 rounded'>{item} </span>)}</p>
+				<p>tags- {data?.tags?.map((item,i)=><span key={i} className='bg-gray-100 mx-1 p-1 text-xs rounded'>{item} </span>)}</p>
 				<div className="">
            	 		<Button size="small" variant="contained" color="success" className='w-full'><LuIndianRupee /> {data.price}</Button>
 				</div>

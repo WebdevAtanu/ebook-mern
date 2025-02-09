@@ -1,17 +1,19 @@
 import React from 'react'
+import { FaTwitter } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
-function Card(){
+function Card(props){
 	return(
 	<div className="p-4">
 		<div className="h-full flex flex-col items-center text-center">
-			<img alt="team" className="rounded-lg w-full aspect-square object-cover object-center mb-2" src="https://dummyimage.com/200x200"/>
+			<img alt="team" className="rounded-lg w-full aspect-square object-cover object-center mb-2" src={props.image}/>
 			<div className="w-full">
-				<h2 className="title-font font-medium text-lg text-gray-900">Alper Kamu</h2>
-				<h3 className="text-gray-500 mb-2">UI Developer</h3>
+				<h2 className="title-font font-medium text-lg text-gray-900">{props.name}</h2>
 				<span className="inline-flex gap-2">
-					<a className="text-gray-500"><p>social</p></a>
-					<a className="text-gray-500"><p>social</p></a>
-					<a className="text-gray-500"><p>social</p></a>
+					<a className="text-gray-500 cursor-pointer hover:text-blue-500"><p><FaTwitter/></p></a>
+					<a className="text-gray-500 cursor-pointer hover:text-blue-500"><p><FaFacebookF/></p></a>
+					<a className="text-gray-500 cursor-pointer hover:text-blue-500"><p><FaInstagram/></p></a>
 				</span>
 			</div>
 		</div>
@@ -28,10 +30,10 @@ function Contact() {
 				<p className="mx-auto leading-relaxed text-base">Feel free to contact our team.</p>
 			</div>
 			<div className="grid grid-cols-2 md:grid-cols-4">
-				<Card/>
-				<Card/>
-				<Card/>
-				<Card/>
+				<Card image="team/t1.jpg" name="Barry Allen"/>
+				<Card image="team/t2.jpg" name="Sysko Ramon"/>
+				<Card image="team/t3.jpg" name="Edward Thawne"/>
+				<Card image="team/t4.jpg" name="Harrison Wells"/>
 			</div>
 		</div>
 	</section>
