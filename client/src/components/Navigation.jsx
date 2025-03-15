@@ -50,11 +50,11 @@ function Navigation() {
 
   return (
     <>
-      <div className="bg-green-700 text-white flex flex-wrap p-2 justify-between">
+      <div className="bg-green-700 text-white flex p-2 justify-between">
         <div className="md:hidden">
-          <img src="logo.png" alt="" className="w-1/12" />
+          <img src="logo.png" alt="" className="w-1/4" />
         </div>
-        <nav className="md:mx-auto text-sm flex gap-5 flex-wrap items-center justify-center">
+        <nav className="md:mx-auto text-sm flex gap-5 items-center justify-center">
           <NavLink
             to="/"
             className={({ isActive }) =>
