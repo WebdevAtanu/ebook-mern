@@ -13,7 +13,7 @@ import {Link} from 'react-router-dom';
 
 function Cards({prop}){
 	return(
-	<Card>
+	<Card className='flex flex-col justify-between'>
       <CardMedia
         sx={{ height: 200 }}
         image={prop.image}
