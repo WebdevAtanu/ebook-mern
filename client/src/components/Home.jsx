@@ -37,12 +37,12 @@ function Home() {
 			</div>
 			<div className="p-4 flex flex-col items-center sm:w-1/4 w-1/2">
 				<BiPurchaseTagAlt className='text-3xl text-green-600' />
-				<h2 className="title-font font-medium text-2xl text-gray-900">65</h2>
+				<h2 className="title-font font-medium text-2xl text-gray-900">65+</h2>
 				<p className="leading-relaxed">Purchases</p>
 			</div>
 			<div className="p-4 flex flex-col items-center sm:w-1/4 w-1/2">
 				<PiBooks className='text-3xl text-green-600' />
-				<h2 className="title-font font-medium text-2xl text-gray-900">250</h2>
+				<h2 className="title-font font-medium text-2xl text-gray-900">250+</h2>
 				<p className="leading-relaxed">Books</p>
 			</div>
 		</div>
