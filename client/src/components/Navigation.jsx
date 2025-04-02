@@ -28,7 +28,6 @@ function Navigation() {
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/book/allbooks`)
         .then((res) => {
           setData(res.data.books);
-          console.log(res.data.books);
         });
     } catch (error) {
       console.log(error);
@@ -78,14 +77,6 @@ function Navigation() {
             }
           >
             BLOG
-          </NavLink>
-          <NavLink
-            to="/admin"
-            className={({ isActive }) =>
-              isActive ? "border px-1 rounded bg-white text-green-900" : null
-            }
-          >
-            ADMIN
           </NavLink>
         </nav>
       </div>

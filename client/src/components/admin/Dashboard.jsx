@@ -5,13 +5,12 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { TiThMenu } from "react-icons/ti";
-import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 function Dashboard() {
     const [option, setOption] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
-    const [key,setKey] = useState("atanu1998");
-    const navigate=useNavigate();
+	const [data,setData]=useState([]);
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -23,24 +22,17 @@ function Dashboard() {
         setAnchorEl(null);
     };
 
-    const signin=()=>{
-        let pass=prompt('Enter admin passkey');
-        if(pass==key){
-            return true
-        }
-        else{
-            navigate('/');
-            return;
-        }
-        
-    }
-
-    useEffect(()=>{
-    	signin();
-    },[])
-
-
-
+	useEffect(()=>{
+		try{
+			axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/book/allbooks`)
+			.then(res=>{
+			setData(res.data.books)
+		  });
+			}
+			catch(error){
+			  console.log(error);
+			}
+	  },[])
 	return (
 		<div>
 		<div className='flex justify-end p-2'>
@@ -71,7 +63,7 @@ function Dashboard() {
 
 
     	{
-    		option=='Add Book'?<Addbook/>:<Datatable/>
+    		option=='Add Book'?<Addbook/>:<Datatable data={data}/>
     	}
 			
 		</div>
