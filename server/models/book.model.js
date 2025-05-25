@@ -17,8 +17,8 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tags:{
-        type:[String],
+    tags: {
+        type: [String],
     },
     price: {
         type: Number,
@@ -26,7 +26,10 @@ const bookSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default:"https://github.com/WebdevAtanu/shopper-ecommerce/blob/main/server/public/noimg.png?raw=true"
+        default: "https://github.com/WebdevAtanu/shopper-ecommerce/blob/main/server/public/noimg.png?raw=true"
+    },
+    pdf: {
+        type: String,
     }
 }, {
     timestamps: true

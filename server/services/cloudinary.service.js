@@ -1,33 +1,43 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
+import mime from 'mime-types';
+import { config } from 'dotenv';
+
+config({ path: './config.env' });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function uploadToCloudinary(localFilePath) {
-    cloudinary.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET //
-    });
+  try {
+    if (!localFilePath) return null;
 
-    try {
-        if (!localFilePath) return null;
-        const uploadResult = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: "auto"
-        })
-        console.log('file uploaded with url ', uploadResult.url);
-        fs.unlinkSync(localFilePath);
-        return uploadResult;
+    const mimeType = mime.lookup(localFilePath);
+    let resourceType = 'auto';
 
-    } catch (error) {
-        fs.unlinkSync(localFilePath);
-        console.log(error);
+    if (mimeType === 'application/pdf') {
+      resourceType = 'raw'; // For PDFs
+    } else if (mimeType && mimeType.startsWith('image/')) {
+      resourceType = 'auto'; // For images
     }
 
-    // Transform the image: auto-crop to square aspect_ratio
-    // const autoCropUrl = cloudinary.url('demo', {
-    //     crop: 'auto',
-    //     gravity: 'auto',
-    //     width: 500,
-    //     height: 500,
-    // });
-    // console.log(autoCropUrl);
+    const uploadResult = await cloudinary.uploader.upload(localFilePath, {
+      resource_type: resourceType,
+      // Optional: folder: 'uploads'
+    });
+
+    console.log('File uploaded with URL:', uploadResult.secure_url);
+    fs.unlinkSync(localFilePath); // Delete local file after upload
+
+    return uploadResult;
+  } catch (error) {
+    console.error('Cloudinary Upload Error:', error);
+    if (localFilePath && fs.existsSync(localFilePath)) {
+      fs.unlinkSync(localFilePath);
+    }
+    return null;
+  }
 }
