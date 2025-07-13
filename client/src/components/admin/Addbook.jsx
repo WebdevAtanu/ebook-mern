@@ -200,7 +200,7 @@ function Addbook() {
         </div>
 
         {/* PDF Upload */}
-        <div className="flex flex-col">
+        <div className="flex flex-col items-start">
           <label
             htmlFor="pdf"
             className="cursor-pointer flex gap-2 items-center px-4 py-2 bg-purple-600 text-white rounded text-sm"
